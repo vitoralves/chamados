@@ -141,6 +141,7 @@ export class TicketsDetalheComponent implements OnInit {
   }
 
   baixarAnexo(){
+    
     window.open(this.anexo);
   }
 
