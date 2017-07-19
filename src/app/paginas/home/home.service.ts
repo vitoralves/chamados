@@ -10,8 +10,8 @@ export class HomeService {
 
   }
 
-  retornaTodosTickets(empresa: number){
-    return this.http.get('http://localhost:3000/api/tickets/all/empresa/'+empresa).map(res => res.json()).toPromise();
+  retornaTodosTickets(empresa: number, user: number){
+    return this.http.get('http://localhost:3000/api/tickets/all/empresa/'+empresa+'/'+user).map(res => res.json()).toPromise();
   }
 
 }

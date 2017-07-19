@@ -18,7 +18,7 @@ const appRoutes: Routes = [
       { path: 'produtos', loadChildren: './produtos/produtos.module#ProdutosModule', canActivate: [AuthGuard, AdminGuard]},
       { path: 'usuarios', loadChildren: './usuarios/usuarios.module#UsuariosModule', canActivate: [AuthGuard, AdminGuard]},
       { path: 'tickets', loadChildren: './tickets/tickets.module#TicketsModule', canActivate: [AuthGuard]},
-      { path: 'tickets/detalhe/:id', loadChildren: './tickets-detalhe/tickets-detalhe.module#TicketsDetalheModule'},
+      { path: 'tickets/detalhe/:id', loadChildren: './tickets-detalhe/tickets-detalhe.module#TicketsDetalheModule', canActivate: [AuthGuard]},
       { path: 'componentes', loadChildren: './componentes/componentes.module#ComponentesModule', canActivate: [AuthGuard, AdminGuard]}
     ]
   }

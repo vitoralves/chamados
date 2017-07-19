@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
     this.util.retornaUsuario().then(data => {
       this.usuario = data.data;
       this.adm = this.usuario.adm;
-      this.service.retornaTodosTickets(this.usuario.empresa).then(res => {
+      this.service.retornaTodosTickets(this.usuario.empresa, this.usuario.id).then(res => {
         this.tickets = res.data;
       });
     });

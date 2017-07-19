@@ -69,10 +69,7 @@ export class TicketsDetalheComponent implements OnInit {
           this.usuario = result.data.usuario;
           this.anexo_nome = result.data.anexo_nome;
           this.anexo_tipo = result.data.anexo_mimetype;
-          if(result.data.anexo.length > 0){
-            // this.anexo = 'data:'+this.anexo_tipo+';base64, '+result.data.anexo;
-            this.anexo = result.data.anexo;
-          }
+          this.anexo = 'data:'+this.anexo_tipo+';base64, '+result.data.anexo;            
         } else {
           this.rota.navigate(['pages/nao-encontrado']);
         }
@@ -144,19 +141,7 @@ export class TicketsDetalheComponent implements OnInit {
   }
 
   baixarAnexo(){
-    var bytes = atob(this.anexo);
-    var byteArray = new Array(bytes.length);
-
-    for (var i=0; i < bytes.length; i++){
-      byteArray[i] = bytes.charCodeAt(i);
-    }
-
-    var array = new Uint8Array(byteArray);
-
-    var blob = new Blob([array], {type: this.anexo_tipo});
-    var url = window.URL.createObjectURL(blob);
-    window.open(url);
-    //window.location.href = this.anexo;
+    window.open(this.anexo);
   }
 
   doLogado(valor){
