@@ -38,34 +38,58 @@
       <div class="col-md-12">
         <div class="box box-primary">
           <div class="box-body">
-            <h4 class="box-title">Meus chamados</h4>
+            <div class="row">
+              <div class="col-md-10">
+                <h4 class="box-title">Meus chamados</h4>
+              </div>
+              <div class="col-md-2">
+                <button type="button" class="btn btn-block btn-primary pull-right" (click)="inserirTicket()">Adicionar</button>  
+              </div>
+            </div>
             <!--FILTRO-->
             <div class="row">
               <div class="col-md-2">
-                <p class="filtro">Filtro:</p>
-                <select name="filtro" [(ngModel)]="filtro" class="form-control select2" style="max-width: 150px;float: left;" (change)="changeFiltro()">
-                  <option value="">Selecione</option>
-                  <option value="I">ID</option>
-                  <option value="P">Produto</option>
-                  <option value="E">Estado</option>
-                </select>
+                <div class="form-group">
+                  <label for="filtro" class="control-label">Filtro</label>
+                  <select name="filtro" [(ngModel)]="filtro" class="form-control select2" style="max-width: 150px;float: left;" (change)="changeFiltro()">
+                    <option value="T">Tudo</option>
+                    <option value="I">ID</option>
+                    <option value="P">Produto</option>
+                    <option value="E">Estado</option>
+                  </select>
+                </div>
               </div>
 
               <div class="col-md-4">
-                <p class="filtro">{{labelFiltro}}</p>
-                <input id="filtro" type="text" class="form-control" placeholder="{{filtroPlace}}" [ngModel]="filtroValor" 
-                name="filtro" required *ngIf="filtroText" style="max-width: 86%; float: left;"/>
-                
-                <select name="tipo" [(ngModel)]="filtroEstado" class="form-control select2" style="max-width: 150px;float: left;" *ngIf="filtroSelect">
+                <div class="form-group">
+                  <label for="filtro" class="control-label">{{labelFiltro}}</label>
+                  <input id="filtro" type="text" class="form-control" placeholder="{{filtroPlace}}" [(ngModel)]="filtroValor" name="filtroValor" required
+                    *ngIf="filtroText" />
+
+                  <select name="tipo" [(ngModel)]="filtroEstado" class="form-control select2" *ngIf="filtroSelect">
                   <option value="">Selecione</option>
                   <option value="0">Aberto</option>
                   <option value="1">Em Andamento</option>
                   <option value="2">Resolvido</option>
                 </select>
+                </div>
               </div>
 
               <div class="col-md-2">
-                <button type="button" class="btn btn-block btn-primary" (click)="inserirTicket()">Adicionar</button>
+                <div class="form-group">
+                  <label for="btnFiltro" class="control-label"></label>
+                  <button id="btnFiltro" type="button" class="btn btn-block btn-primary" (click)="filtrar()" *ngIf="filtroText || filtroSelect"
+                    style="max-width: 75px;">
+                    <i class="fa fa-search"></i>
+                    Filtrar
+                  </button>  
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <div class="form-group">
+                  
+                </div>
               </div>
             </div>
 

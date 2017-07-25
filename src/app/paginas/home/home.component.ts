@@ -32,9 +32,13 @@ export class HomeComponent implements OnInit {
     this.util.retornaUsuario().then(data => {
       this.usuario = data.data;
       this.adm = this.usuario.adm;
-      this.service.retornaTodosTickets(this.usuario.empresa, this.usuario.id).then(res => {
+      this.pesquisaTickets();
+    });
+  }
+
+  pesquisaTickets(){
+    this.service.retornaTodosTickets(this.usuario.empresa, this.usuario.id).then(res => {
         this.tickets = res.data;
-      });
     });
   }
 
@@ -72,11 +76,34 @@ export class HomeComponent implements OnInit {
       this.filtroPlace = 'Informe um produto...';
       this.filtroText = true;
       this.filtroSelect = false;
-    }else {
+    }else if (this.filtro === 'E'){
       this.labelFiltro = 'Estado:';
       this.filtroPlace = '';
       this.filtroText = false;
       this.filtroSelect = true;
+    }else{
+      this.labelFiltro = '';
+      this.filtroText = false;
+      this.filtroSelect = false;
+      this.pesquisaTickets();
+    }
+  }
+
+  filtrar(){
+    if (this.filtro === 'I'){
+      this.service.retornaTicketsPorId(this.usuario.empresa, this.usuario.id, this.filtroValor).then(result => {
+        this.tickets = result.data;
+      });
+    }else if (this.filtro === 'P'){
+      this.service.retornaTicketsPorProduto(this.usuario.empresa, this.usuario.id, this.filtroValor).then(result => {
+        this.tickets = result.data;
+      });
+    }else if (this.filtro === 'E'){
+      this.service.retornaTicketsPorEstado(this.usuario.empresa, this.usuario.id, this.filtroEstado).then(result => {
+        this.tickets = result.data;
+      });
+    }else {
+      this.pesquisaTickets();
     }
   }
 }
