@@ -17,6 +17,12 @@ export class HomeComponent implements OnInit {
   filtro: String = "";
   usuario: any;
   adm: boolean = false;
+  labelFiltro: String;
+  filtroPlace: String;
+  filtroText: boolean = false;
+  filtroSelect: boolean = false;
+  filtroValor;
+  filtroEstado: String = "";
 
   constructor(private rootComp: AppComponent, private rota: Router, private service: HomeService, private util: UtilService) {
     this.rootComp.cssClass = 'hold-transition skin-blue-light sidebar-mini sidebar-collapse';
@@ -53,5 +59,24 @@ export class HomeComponent implements OnInit {
 
   retornaEstado(e: number) {
     return this.util.retornaEstado(e);
+  }
+
+  changeFiltro(){
+    if (this.filtro === 'I'){
+      this.labelFiltro = 'ID:';
+      this.filtroPlace = 'Informe um ID...';
+      this.filtroText = true;
+      this.filtroSelect = false;
+    } else if (this.filtro === 'P'){
+      this.labelFiltro = 'Produto:';
+      this.filtroPlace = 'Informe um produto...';
+      this.filtroText = true;
+      this.filtroSelect = false;
+    }else {
+      this.labelFiltro = 'Estado:';
+      this.filtroPlace = '';
+      this.filtroText = false;
+      this.filtroSelect = true;
+    }
   }
 }
